@@ -1,0 +1,30 @@
+{
+  "coord": { "lon": 10, "lat": 53.55 },
+  "weather": [
+    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 304.6,
+    "feels_like": 303.36,
+    "temp_min": 303.03,
+    "temp_max": 306.64,
+    "pressure": 1019,
+    "humidity": 30
+  },
+  "visibility": 10000,
+  "wind": { "speed": 2.57, "deg": 170 },
+  "clouds": { "all": 0 },
+  "dt": 1658229107,
+  "sys": {
+    "type": 1,
+    "id": 1263,
+    "country": "DE",
+    "sunrise": 1658200488,
+    "sunset": 1658259442
+  },
+  "timezone": 7200,
+  "id": 2911298,
+  "name": "Hamburg",
+  "cod": 200
+}
