@@ -52,8 +52,6 @@ app.post('/', (req, res) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=${unit}`;
     const offline_json = json;
 
-
-
     https.get(url, (response) => {
 
         response.on('data', (data) => {
