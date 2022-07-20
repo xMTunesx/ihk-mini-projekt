@@ -14,9 +14,7 @@ wget({
     dest: '/Users/xmtunesx/Downloads/ccpk/node_xpr/',
     timeout: 2000
 },
-    (err) =>
-        err ? console.log(err) :
-        console.log('Downloaded JSON-File'));
+    (err) => err ? console.log(err) : console.log('Downloaded JSON-File'));
 /** /////////////////////////////////////////////////////////////////// */
 
 /** //////////////////////// * DatenBank * //////////////////////// */
@@ -58,7 +56,6 @@ app.post('/', (req, res) => {
 
     https.get(url, (response) => {
 
-
         response.on('data', (data) => {
             const weatherData = JSON.parse(data);
             const temp = !weatherData.main ? offline_json.main.temp : weatherData.main.temp;
@@ -86,32 +83,6 @@ app.post('/', (req, res) => {
             res.write('<br/>');
             res.write(`<iframe src="${src}"width="450" height="250"frameborder="0" style="border:0"referrerpolicy="no-referrer-when-downgrade">' + '</iframe>`);
             res.write(`<h1> ${lat} Lat ${lon} Lon </h1>`);
-            // (() => {
-            //     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=${unit}`)
-            //         .then(res => res.json())
-            //         .then(data => data);
-            // })();
-
-            //**Widgets */
-
-            res.write('<div class="widgets">');
-            res.write(`<h4>${search = 'paris'}</h4>`);
-            res.write(`<img src="${urlIMG}" alt="icon"/>`);
-            res.write(`<p> Tempeture ${temp} C </p>`);
-            res.write(`<p> ${wdesc} </p>`);
-
-            res.write(`<h4>${search = 'M&uuml;schen'}</h4>`);
-            res.write(`<img src="${urlIMG}" alt="icon"/>`);
-            res.write(`<p> Tempeture ${temp} C </p>`);
-            res.write(`<p> ${wdesc} </p>`);
-
-            res.write(`<h4>${search = 'madrid'}</h4>`);
-            res.write(`<img src="${urlIMG}" alt="icon"/>`);
-            res.write(`<p> Tempeture ${temp} C </p>`);
-            res.write(`<p> ${wdesc} </p>`);
-            res.write('</div>');
-
-            //**Widgets */
             res.send();
         });
     });

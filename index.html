@@ -14,8 +14,91 @@
         <input id="cityInput" type="text" name="cityName">
         <input type="submit" name="sumbit" value="Go">
     </form>
+</br>
+</br>
+</br>
+</br>
+    <div class="widgets" style="display:flex; flex-wrap:wrap;">
+        <div id="weather-widget-1"></div>
+        <div id="weather-widget-2"></div>
+        <div id="weather-widget-3"></div>
+        <div id="weather-widget-4"></div>
+        <div id="weather-widget-5"></div>
+        <div id="weather-widget-6"></div>
+        <div id="weather-widget-7"></div>
+    </div>
 
     <!-- <script src="app.js"></script> -->
+
+
+    <script>
+        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+
+        //** England
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '4110001',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-1'
+        });
+        //** Paris
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '2988507',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-2'
+        });
+        //** Muenchen
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '2867714',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-3'
+        });
+        //** Spanien
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '2510769',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-4'
+        });
+        //** Brazil
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '4254884',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-5'
+        });
+        //** Hawaii
+        window.myWidgetParam.push({
+            id: 12,
+            cityid: '5855797',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-6'
+        });
+        //** Dom Rep
+        window.myWidgetParam.push({
+            id: 11,
+            cityid: '3508796',
+            appid: 'a47876391a9f83964687ec1dd1052d69',
+            units: 'metric',
+            containerid: 'weather-widget-7'
+        });
+        (() => {
+            var script = document.createElement('script');
+            script.async = true;
+            script.charset = "utf-8";
+            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    </script>
 </body>
 
 </html>
