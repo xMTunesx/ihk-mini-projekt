@@ -76,19 +76,28 @@ app.post('/', (req, res) => {
             con.query(sql, (err, result) => err ? console.error('err: ', err.message) : '');
 
             //% Filter die über 30ºC sind //
+            let ress = [];
             const query = `SELECT cityName,temp FROM weather WHERE temp > 30 ORDER BY temp ASC LIMIT 5`;
             con.query(query, (err, result) => {
-                if (err) {
-                    console.log(err.message);
-                } else {
-                    console.log('try1');
-                    show_result('hallo');
-                }
+                err ? console.error(err) : ress.push(result);
+
+                res.write(`<h1>TOP 5 Hottest Weather</h1>`);
+
+                res.write('<div style="display:flex">');
+
+                res.write(`<h3> ${ress[0][0].cityName}, ${ress[0][0].temp} &ordmC</h3>`);
+                res.write(`<img style="position:relative; top:50px;right:125px" src="${urlIMG}" alt="icon"/>`);
+
+                res.write(`<h3> ${ress[0][1].cityName}, ${ress[0][1].temp} &ordmC</h3>`);
+                res.write(`<img style="position:relative; top:50px;right:125px" src="${urlIMG}" alt="icon"/>`);
+
+                res.write(`<h3> ${ress[0][2].cityName}, ${ress[0][2].temp} &ordmC</h3>`);
+                res.write(`<img style="position:relative; top:50px;right:125px" src="${urlIMG}" alt="icon"/>`);
+
+                res.write(`<h3> ${ress[0][3].cityName}, ${ress[0][3].temp} &ordmC</h3>`);
+                res.write(`<img style="position:relative; top:50px;right:125px" src="${urlIMG}" alt="icon"/>`);
+                res.write('</div>');
             });
-            function show_result(a) {
-                console.log(a);
-                res.write(`<h1>Hallo</h1>`);
-            };
 
             //* Gmaps //
             const APIKEY = 'AIzaSyAYHyQ2eIb8M1oMN_S0Z7Hkve6h2UkFBi0';
@@ -96,8 +105,8 @@ app.post('/', (req, res) => {
             const src = `https://www.google.com/maps/embed/v1/place?key=${APIKEY}&${PARAM}`;
 
             res.write(`<h1> ${search} </h1>`);
-            res.write(`<h1> Tempeture is ${temp} C </h1>`);
-            res.write(`<h1> Feels like ${feel} C </h1>`);
+            res.write(`<h1> Tempeture is ${temp} &ordm;C </h1>`);
+            res.write(`<h1> Feels like ${feel} &ordm;C </h1>`);
             res.write(`<img src="${urlIMG}" alt="icon"/>`);
             res.write(`<p> ${wdesc} </p>`);
             res.write('<br/>');
@@ -106,10 +115,8 @@ app.post('/', (req, res) => {
 
             res.write('<br/>');
             res.write('<br/>');
+            ;
 
-            // res.write(`<h5> ${ress}</h5>`);
-
-            res.send();
         });
     });
 });
