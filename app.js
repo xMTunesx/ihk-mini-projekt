@@ -71,11 +71,6 @@ app.post('/', (req, res) => {
             const lat = !weatherData.coord ? offline_json.coord.lat : weatherData.coord.lat;
             const lon = !weatherData.coord ? offline_json.coord.lon : weatherData.coord.lon;
 
-            //* Gmaps //
-            const APIKEY = 'AIzaSyAYHyQ2eIb8M1oMN_S0Z7Hkve6h2UkFBi0';
-            const PARAM = `q=${lat},${lon}`;
-            const src = `https://www.google.com/maps/embed/v1/place?key=${APIKEY}&${PARAM}`;
-
             //% Insert SQL //
             const sql = `INSERT INTO weather (cityName, temp, feel, wdesc) VALUES ('${search}', '${temp}', '${feel}', '${wdesc}')`;
             con.query(sql, (err, result) => err ? console.error('err: ', err.message) : '');
@@ -91,9 +86,14 @@ app.post('/', (req, res) => {
                 }
             });
             function show_result(a) {
-                    console.log(a);
+                console.log(a);
                 res.write(`<h1>Hallo</h1>`);
             };
+
+            //* Gmaps //
+            const APIKEY = 'AIzaSyAYHyQ2eIb8M1oMN_S0Z7Hkve6h2UkFBi0';
+            const PARAM = `q=${lat},${lon}`;
+            const src = `https://www.google.com/maps/embed/v1/place?key=${APIKEY}&${PARAM}`;
 
             res.write(`<h1> ${search} </h1>`);
             res.write(`<h1> Tempeture is ${temp} C </h1>`);
