@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="cursor: url('http://www.rw-designer.com/cursor-extern.php?id=7163'), auto;">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <style>
+        input.btngo:hover {
+            cursor: url('http://www.rw-designer.com/cursor-extern.php?id=7163'), auto;
+        }
+        label {
+            cursor: url('http://www.rw-designer.com/cursor-extern.php?id=7163'), auto;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="/" method="post">
-        <label for="cityInput">City Name: </label>
-        <input id="cityInput" type="text" name="cityName">
-        <input type="submit" name="sumbit" value="Go">
-    </form>
-</br>
-</br>
-</br>
-</br>
+    <div style="margin-top:5rem;">
+        <form action="/" method="post">
+            <label style="font-size: 35px; font-weight: bold;  text-shadow: 2px 2px aqua" for="cityInput">City Name
+            </label>
+            <input class="search" style="font-size: 35px;background-color: aqua;caret-color: red;" type="text"
+                name="cityName" autocomplete="off" placeholder="search">
+            <input class="btngo" style="font-size: 35px; width: 120px; background-color: aqua;" type="submit"
+                value="GO">
+        </form>
+    </div>
+
+    </br>
+    </br>
+    </br>
+    </br>
+
     <div class="widgets" style="display:flex; flex-wrap:wrap;">
         <div id="weather-widget-1"></div>
         <div id="weather-widget-2"></div>

@@ -9,12 +9,19 @@ const PORT = process.env.PORT || 5001;
 const app = express();
 
 /** /////////////////////////////////////////////////////////////////// */
-wget({
-    url: 'https://api.openweathermap.org/data/2.5/weather?q=Hamburg&appid=a47876391a9f83964687ec1dd1052d69',
-    dest: '/Users/xmtunesx/Downloads/ccpk/node_xpr/',
-    timeout: 2000
-},
-    (err) => err ? console.log(err) : console.log('Downloaded JSON-File'));
+function wgetDL() {
+    wget({
+        url: 'https://api.openweathermap.org/data/2.5/weather?q=Hamburg&appid=a47876391a9f83964687ec1dd1052d69',
+        dest: '/Users/xmtunesx/Downloads/ccpk/node_xpr/',
+        timeout: 2000
+    },
+        (err) => err ? console.log(err) : console.log('Downloaded JSON-File'));
+
+    setTimeout(wgetDL, 60000);
+}
+wgetDL();
+
+
 /** /////////////////////////////////////////////////////////////////// */
 
 /** //////////////////////// * DatenBank * //////////////////////// */
@@ -73,6 +80,21 @@ app.post('/', (req, res) => {
             const sql = `INSERT INTO weather (cityName, temp, feel, wdesc) VALUES ('${search}', '${temp}', '${feel}', '${wdesc}')`;
             con.query(sql, (err, result) => err ? console.error('err: ', err.message) : '');
 
+            //% Filter die über 30ºC sind //
+            const query = `SELECT cityName,temp FROM weather WHERE temp > 30 ORDER BY temp ASC LIMIT 5`;
+            con.query(query, (err, result) => {
+                if (err) {
+                    console.log(err.message);
+                } else {
+                    console.log('try1');
+                    show_result('hallo');
+                }
+            });
+            function show_result(a) {
+                    console.log(a);
+                res.write(`<h1>Hallo</h1>`);
+            };
+
             res.write(`<h1> ${search} </h1>`);
             res.write(`<h1> Tempeture is ${temp} C </h1>`);
             res.write(`<h1> Feels like ${feel} C </h1>`);
@@ -80,7 +102,13 @@ app.post('/', (req, res) => {
             res.write(`<p> ${wdesc} </p>`);
             res.write('<br/>');
             res.write(`<iframe src="${src}"width="450" height="250"frameborder="0" style="border:0"referrerpolicy="no-referrer-when-downgrade">' + '</iframe>`);
-            res.write(`<h1> ${lat} Lat ${lon} Lon </h1>`);
+            res.write(`<h1> ${lat} Latitude , ${lon} Longitude </h1>`);
+
+            res.write('<br/>');
+            res.write('<br/>');
+
+            // res.write(`<h5> ${ress}</h5>`);
+
             res.send();
         });
     });
