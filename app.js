@@ -33,11 +33,13 @@ wgetDL();
 
 //* Create Tables
 let createWeather = `CREATE TABLE IF NOT EXISTS weather(
+    id      INT AUTO_INCREMENT,
     cityName VARCHAR(255) NOT NULL,
     temp    float NOT NULL,
     feel    float NOT NULL,
     wdesc   VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    PRIMARY KEY (id)
 )`;
 //* Save our Tables
 con.query(createWeather, (err) => err ?
@@ -97,6 +99,8 @@ app.post('/', (req, res) => {
                 res.write(`<h3> ${ress[0][3].cityName}, ${ress[0][3].temp} &ordmC</h3>`);
                 res.write(`<img style="position:relative; top:50px;right:125px" src="${urlIMG}" alt="icon"/>`);
                 res.write('</div>');
+                res.send();
+
             });
 
             //* Gmaps //
@@ -115,7 +119,6 @@ app.post('/', (req, res) => {
 
             res.write('<br/>');
             res.write('<br/>');
-            ;
 
         });
     });
